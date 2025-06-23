@@ -18,10 +18,10 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
-app.use(userRoutes);
-app.use(groupRoutes);
-app.use(expenseRoutes);
-app.use(paymentRoutes);
+app.use('/api',userRoutes);
+app.use('/api',groupRoutes);
+app.use('/api',expenseRoutes);
+app.use('/api',paymentRoutes);
 
 
 //test route

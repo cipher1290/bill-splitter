@@ -24,6 +24,11 @@ const PaymentSchema = new Schema({
         required: true
     },
 
+    expense: {
+        type: 'ObjectId',
+        ref: 'Expense'
+    },
+
     createdAt: {
         type: Date,
         default: Date.now,

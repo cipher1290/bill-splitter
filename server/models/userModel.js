@@ -16,6 +16,11 @@ const UserSchema = new Schema({
         ]
   },
 
+  password : {
+    type : String,
+    required: [false, 'Please enter a password']
+  },
+
   createdAt: {
     type: Date,
     default: Date.now,

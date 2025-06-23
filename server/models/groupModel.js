@@ -11,6 +11,19 @@ const GroupSchema = new Schema({
     ref : 'User'
   }],
 
+    expenses: [
+    {
+      type: 'ObjectId',
+      ref: 'Expense', // ✅ should match your Expense model name
+    },
+  ],
+  payments: [
+    {
+      type: 'ObjectId',
+      ref: 'Payment', // ✅ should match your Payment model name
+    },
+  ],
+
   createdAt: {
     type: Date,
     default: Date.now,
