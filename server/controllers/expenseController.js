@@ -309,4 +309,4 @@ const getExpenseBreakdown = async (req, res) => {
 
 
 
-module.exports = {createExpenses, getAllExpenses, updateExpenses, deleteExpenses, calculateCustomBalances, getExpenseBreakdown, getExpenseById};
+module.exports = {createExpenses, getAllExpenses, deleteExpenses, getExpenseBreakdown, getExpenseById};
