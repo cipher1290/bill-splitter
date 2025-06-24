@@ -89,32 +89,32 @@ const getExpenseById = async (req, res) => {
 }
 
 //update expenses
-const updateExpenses = async (req, res) =>{
-    const {id} = req.params;
-    const{description, group, amount, paidBy, splits} = req.body;
-    try{
-        const updatedExpense = await Expense.findByIdAndUpdate(id, {description, group, amount, paidBy, splits}, {new : true}).populate('paidBy', 'name').populate('splits.user', 'name');
+// const updateExpenses = async (req, res) =>{
+//     const {id} = req.params;
+//     const{description, group, amount, paidBy, splits} = req.body;
+//     try{
+//         const updatedExpense = await Expense.findByIdAndUpdate(id, {description, group, amount, paidBy, splits}, {new : true}).populate('paidBy', 'name').populate('splits.user', 'name');
 
-        if(!updatedExpense || updatedExpense.length === 0)
-        {
-            res.status(404).json({
-                success : false,
-                message : "No such expense found..."
-            })
-        }
+//         if(!updatedExpense || updatedExpense.length === 0)
+//         {
+//             res.status(404).json({
+//                 success : false,
+//                 message : "No such expense found..."
+//             })
+//         }
 
-        res.status(200).json({
-            success : true,
-            message : updatedExpense
-        })
-    }
-    catch(err){
-        res.status(500).json({
-            success : false,
-            message : err.message
-        })
-    }
-}
+//         res.status(200).json({
+//             success : true,
+//             message : updatedExpense
+//         })
+//     }
+//     catch(err){
+//         res.status(500).json({
+//             success : false,
+//             message : err.message
+//         })
+//     }
+// }
 
 //delete an expense
 const deleteExpenses = async (req, res) =>{
@@ -144,47 +144,47 @@ const deleteExpenses = async (req, res) =>{
 }
 
 //calculation logic
-const calculateCustomBalances = async (req, res) => {
-    try {
-        const { id } = req.params;
+// const calculateCustomBalances = async (req, res) => {
+//     try {
+//         const { id } = req.params;
 
-        const expenses = await Expense.find({ group: id })
-            .populate('paidBy', 'name _id')
-            .populate('splits.user', 'name _id');
+//         const expenses = await Expense.find({ group: id })
+//             .populate('paidBy', 'name _id')
+//             .populate('splits.user', 'name _id');
 
-        const balances = {};
+//         const balances = {};
 
-        expenses.forEach(exp => {
-            const paidById = exp.paidBy._id.toString();
-            const paidByName = exp.paidBy.name;
+//         expenses.forEach(exp => {
+//             const paidById = exp.paidBy._id.toString();
+//             const paidByName = exp.paidBy.name;
 
-            exp.splits.forEach(split => {
-                const userId = split.user._id.toString();
-                const userName = split.user.name;
-                const owed = split.amount;
+//             exp.splits.forEach(split => {
+//                 const userId = split.user._id.toString();
+//                 const userName = split.user.name;
+//                 const owed = split.amount;
 
-                if (userId !== paidById) {
-                    const key = `${userName}->${paidByName}`;
-                    if (!balances[key]) balances[key] = 0;
-                    balances[key] += owed;
-                }
-            });
-        });
+//                 if (userId !== paidById) {
+//                     const key = `${userName}->${paidByName}`;
+//                     if (!balances[key]) balances[key] = 0;
+//                     balances[key] += owed;
+//                 }
+//             });
+//         });
 
-        const formatted = Object.entries(balances).map(([key, amount]) => {
-            const [from, to] = key.split('->');
-            return {
-                from,
-                to,
-                amount: Math.round(amount * 100) / 100
-            };
-        });
+//         const formatted = Object.entries(balances).map(([key, amount]) => {
+//             const [from, to] = key.split('->');
+//             return {
+//                 from,
+//                 to,
+//                 amount: Math.round(amount * 100) / 100
+//             };
+//         });
 
-        res.status(200).json({ balances: formatted });
-    } catch (err) {
-        res.status(500).json({ success: false, message: err.message });
-    }
-};
+//         res.status(200).json({ balances: formatted });
+//     } catch (err) {
+//         res.status(500).json({ success: false, message: err.message });
+//     }
+// };
 
 // getting group summary
 // const getGroupSummary = async (req, res) => {

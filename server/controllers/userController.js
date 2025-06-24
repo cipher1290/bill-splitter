@@ -41,30 +41,30 @@ const createUsers = async (req, res) => {
 }
 
 // update a user
-const updateUsers = async (req, res) => {
-    const { id } = req.params;
-    const { name, email, password } = req.body;
-    try {
-        const updatedUser = await User.findByIdAndUpdate(id, { name, email, password }, {new : true});
+// const updateUsers = async (req, res) => {
+//     const { id } = req.params;
+//     const { name, email, password } = req.body;
+//     try {
+//         const updatedUser = await User.findByIdAndUpdate(id, { name, email, password }, {new : true});
 
-        if (!updatedUser) {
-            res.status(404).json({
-                message: "No such user is found..."
-            })
-        }
+//         if (!updatedUser) {
+//             res.status(404).json({
+//                 message: "No such user is found..."
+//             })
+//         }
 
-        res.status(200).json({
-            success: true,
-            message: updatedUser
-        })
-    }
-    catch (err) {
-        res.status(500).json({
-            success: false,
-            message: err.message
-        })
-    }
-}
+//         res.status(200).json({
+//             success: true,
+//             message: updatedUser
+//         })
+//     }
+//     catch (err) {
+//         res.status(500).json({
+//             success: false,
+//             message: err.message
+//         })
+//     }
+// }
 
 // delete a user
 
@@ -94,5 +94,5 @@ const deleteUsers = async (req, res) => {
 }
 
 
-module.exports = { getUsers, createUsers, updateUsers, deleteUsers};
+module.exports = { getUsers, createUsers, deleteUsers};
 

@@ -23,7 +23,7 @@ function Dashboard() {
 
   const fetchGroups = async () => {
     try {
-      const res = await API.get(`/groups/user/${user._id}`); // 👈 userId query param bhej rahe
+      const res = await API.get(`/groups/user/${user._id}`); // userId query param bhej rahe
       setGroups(res.data.groups);
     } catch (err) {
       console.error('Failed to fetch groups:', err);

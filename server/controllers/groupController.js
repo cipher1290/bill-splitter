@@ -96,33 +96,33 @@ const getSingleGroup = async (req, res) => {
 
 
 
-//update groups
-const updateGroups = async (req, res) =>{
-    const {id} = req.params;
-    const{name, members} = req.body;
-    try{
-        const updatedGroup = await Group.findByIdAndUpdate(id, {name, members}, {new : true});
+// //update groups
+// const updateGroups = async (req, res) =>{
+//     const {id} = req.params;
+//     const{name, members} = req.body;
+//     try{
+//         const updatedGroup = await Group.findByIdAndUpdate(id, {name, members}, {new : true});
 
-        if(!updatedGroup || updatedGroup.length === 0)
-        {
-            res.status(404).json({
-                success : false,
-                message : "No such group found..."
-            })
-        }
+//         if(!updatedGroup || updatedGroup.length === 0)
+//         {
+//             res.status(404).json({
+//                 success : false,
+//                 message : "No such group found..."
+//             })
+//         }
 
-        res.status(200).json({
-            success : true,
-            message : updatedGroup
-        })
-    }
-    catch(err){
-        res.status(500).json({
-            success : false,
-            message : err.message
-        })
-    }
-}
+//         res.status(200).json({
+//             success : true,
+//             message : updatedGroup
+//         })
+//     }
+//     catch(err){
+//         res.status(500).json({
+//             success : false,
+//             message : err.message
+//         })
+//     }
+// }
 
 //delete a group
 const deleteGroups = async (req, res) =>{
@@ -151,4 +151,4 @@ const deleteGroups = async (req, res) =>{
     }
 }
 
-module.exports = {createGroups, getAllGroups, getSingleGroup, updateGroups, deleteGroups};
+module.exports = {createGroups, getAllGroups, getSingleGroup, deleteGroups};
